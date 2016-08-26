@@ -95,7 +95,8 @@ void speechd_init()
 	if (options.language_set != DEFAULT)
 		if (spd_set_language(conn, options.language) == -1)
 			LOG(1, "Error setting language");
-
+	if (spd_set_volume(conn, options.volume) == -1)
+			LOG(1, "Error setting volume");
 	if (spd_set_capital_letters(conn, SPD_CAP_NONE) == -1)
 		LOG(1, "Unable to set capital letter recognition");
 
@@ -145,7 +146,7 @@ int init_speakup_tables()
 void process_command(char command, unsigned int param, int pm)
 {
 	int val, ret = 0;
-	static int currate = 5, curpitch = 5;
+	static int currate = 5, curpitch = 5, currvolume = 5;
 
 	LOG(5, "cmd: %c, param: %d, rel: %d", command, param, pm);
 	if (pm != 0)
@@ -254,9 +255,17 @@ void process_command(char command, unsigned int param, int pm)
 		break;
 
 	case 'v':
-		LOG(3, "[volume setting not supported yet]");
+		if (pm)
+			currvolume += pm;
+		else
+			currvolume = param;
+		val = (currvolume * 22) - 100;
+		assert((val >= -100) && (val <= +100));
+		LOG(5, "[volume %d, param: %d]", val, param);
+		ret = spd_set_volume(conn, val);
+		if (ret == -1)
+			LOG(1, "ERROR: Invalid volume!");
 		break;
-
 	case 'x':
 		LOG(3, "[tone setting not supported]");
 		break;
