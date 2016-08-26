@@ -163,7 +163,7 @@ void options_parse(int argc, char *argv[])
 			options.log_level_set = COMMAND_LINE;
 			break;
 		case 'n':
-			options.volume = intdup(optarg);
+			options.volume = SPD_OPTION_SET_INT(optarg);
 			options.volume_set = COMMAND_LINE;			
 			break;			
 		case 'L':
