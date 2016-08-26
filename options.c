@@ -40,6 +40,7 @@ static struct option spd_long_options[] = {
 	{"device", 1, 0, 'D'},
 	{"coding", 1, 0, 'c'},
 	{"language", 1, 0, 'i'},
+	{"volume", 1, 0, 'n'},	
 	{"synthesis", 1, 0, 'S'},
 	{"dont-init-tables", 0, 0, 't'},
 	{"probe", 0, 0, 'p'},
@@ -72,6 +73,7 @@ void options_print_help(char *argv[])
 	       "-s, --run-single     -      Run as single application\n"
 	       "-l, --log-level      -      Set log level (1..5)\n"
 	       "-L, --log-file       -      Set log file to path\n"
+	       "-n, --volume         -      Set current speech voilume\n"
 	       "-D, --device         -      Specify the device name of Speakup software synthesis\n"
 	       "-i, --language       -      Set default language for speech output\n"
 	       "-c, --coding         -      Specify the default encoding to use\n"
@@ -102,6 +104,7 @@ void options_set_default(void)
 {
 	options.spd_spk_mode = MODE_DAEMON;
 	options.log_level = 3;
+	options.volume = 0;
 	options.log_level_set = DEFAULT;
 	if (!strcmp(LOGPATH, ""))
 		options.log_file_name = strdup("/var/log/speechd-up.log");
@@ -157,6 +160,10 @@ void options_parse(int argc, char *argv[])
 			SPD_OPTION_SET_INT(options.log_level);
 			options.log_level_set = COMMAND_LINE;
 			break;
+		case 'n':
+			options.volume = strdup(optarg);
+			options.volume_set = COMMAND_LINE;			
+			break;			
 		case 'L':
 			if (options.log_file_name != 0)
 				free(options.log_file_name);
