@@ -132,6 +132,7 @@ void options_set_default(void)
 
 void options_parse(int argc, char *argv[])
 {
+	printf(3,'parse')
 	char *tail_ptr;
 	int c_opt;
 	int option_index;
