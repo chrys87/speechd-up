@@ -124,8 +124,10 @@ static DOTCONF_CB(cb_logLevel)
 
 static DOTCONF_CB(cb_speakupVolume)
 {
+	printf('1')
 	if ((cmd->data.value < -100) || (cmd->data.value > 100))
 		FATAL(-1, "Log volume must be between -100 and 100");
+	printf('2')
 	if (options.volume_set != COMMAND_LINE) {
 		LOG(3, "setting %s to %s\n", cmd->name, cmd->data.value);
 		free(options.log_file_name);
