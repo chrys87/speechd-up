@@ -124,15 +124,16 @@ static DOTCONF_CB(cb_logLevel)
 
 static DOTCONF_CB(cb_speakupVolume)
 {
-	assert(cmd->data.str);
-	if (options.volume != COMMAND_LINE) {
-		LOG(3, "setting %s to %s\n", cmd->name, cmd->data.str);
+	if ((cmd->data.value < -100) || (cmd->data.value > 100))
+		FATAL(-1, "Log volume must be between -100 and 100");
+	if (options.volume_set != COMMAND_LINE) {
+		LOG(3, "setting %s to %s\n", cmd->name, cmd->data.value);
 		free(options.log_file_name);
-		options.volume = strdup(cmd->data.str);
+		options.volume = strdup(cmd->data.value);
 		options.volume_set = CONFIG_FILE;
-		printf(3, "setting %s has value %s\n", cmd->name, cmd->data.str);
-		LOG(3, "setting %s has value %s\n", cmd->name, cmd->data.str);
-	} else { printf(3, "setting %s has value %s\n", cmd->name, cmd->data.str);}
+		printf(3, "setting %s has value %s\n", cmd->name, cmd->data.value);
+		LOG(3, "setting %s has value %s\n", cmd->name, cmd->data.value);
+	} else { printf(3, "setting %s has value %s\n", cmd->name, cmd->data.value);}
 	return NULL;
 }
 
