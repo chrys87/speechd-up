@@ -44,6 +44,7 @@ static DOTCONF_CB(cb_dontInitTables);
 static DOTCONF_CB(cb_language);
 static DOTCONF_CB(cb_logFile);
 static DOTCONF_CB(cb_logLevel);
+static DOTCONF_CB(cb_speakupVolume);
 static DOTCONF_CB(cb_speakupCharacters);
 static DOTCONF_CB(cb_speakupChartab);
 static DOTCONF_CB(cb_speakupCoding);
@@ -57,6 +58,7 @@ static const configoption_t configOptions[] = {
 	{"Language", ARG_STR, cb_language, NULL, CTX_ALL,},
 	{"LogFile", ARG_STR, cb_logFile, NULL, CTX_ALL,},
 	{"LogLevel", ARG_INT, cb_logLevel, NULL, CTX_ALL,},
+	{"Volume", ARG_INT, cb_logLevel, NULL, CTX_ALL,},	
 	{"SpeakupCharacters", ARG_STR, cb_speakupCharacters, NULL, CTX_ALL,},
 	{"SpeakupChartab", ARG_STR, cb_speakupChartab, NULL, CTX_ALL,},
 	{"SpeakupCoding", ARG_STR, cb_speakupCoding, NULL, CTX_ALL,},
@@ -116,6 +118,19 @@ static DOTCONF_CB(cb_logLevel)
 		options.log_level = cmd->data.value;
 		options.log_level_set = CONFIG_FILE;
 		LOG(3, "setting %s has value %i\n", cmd->name, cmd->data.value);
+	}
+	return NULL;
+}
+
+static DOTCONF_CB(cb_speakupVolume)
+{
+	assert(cmd->data.str);
+	if (options.log_file_name_set != COMMAND_LINE) {
+		LOG(3, "setting %s to %s\n", cmd->name, cmd->data.str);
+		free(options.log_file_name);
+		options.log_file_name = strdup(cmd->data.str);
+		options.log_file_name_set = CONFIG_FILE;
+		LOG(3, "setting %s has value %s\n", cmd->name, cmd->data.str);
 	}
 	return NULL;
 }
