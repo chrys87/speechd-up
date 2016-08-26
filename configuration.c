@@ -44,7 +44,7 @@ static DOTCONF_CB(cb_dontInitTables);
 static DOTCONF_CB(cb_language);
 static DOTCONF_CB(cb_logFile);
 static DOTCONF_CB(cb_logLevel);
-//static DOTCONF_CB(cb_speakupVolume);
+static DOTCONF_CB(cb_speakupVolume);
 static DOTCONF_CB(cb_speakupCharacters);
 static DOTCONF_CB(cb_speakupChartab);
 static DOTCONF_CB(cb_speakupCoding);
