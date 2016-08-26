@@ -130,8 +130,7 @@ static DOTCONF_CB(cb_speakupVolume)
 	printf(3,'2');
 	if (options.volume_set != COMMAND_LINE) {
 		LOG(3, "setting %s to %s\n", cmd->name, cmd->data.value);
-		free(options.log_file_name);
-		options.volume = strdup(cmd->data.value);
+		options.volume = cmd->data.value;
 		options.volume_set = CONFIG_FILE;
 		printf(3, "setting %s has value %s\n", cmd->name, cmd->data.value);
 		LOG(3, "setting %s has value %s\n", cmd->name, cmd->data.value);
