@@ -49,7 +49,7 @@ static struct option spd_long_options[] = {
 	{0, 0, 0, 0}
 };
 
-static char *spd_short_options = "dsvhpti:l:L:C:D:S:c:";
+static char *spd_short_options = "dsvhpti:n:l:L:C:D:S:c:";
 
 struct spd_options options;
 
@@ -65,7 +65,7 @@ void options_print_help(char *argv[])
 	assert(argv[0]);
 
 	printf
-	    ("Usage: %s [-{d|s}] [-l {1|2|3|4|5}] [-L=logfile] [-c=encoding] | [-v] | [-h]\n",
+	    ("Usage: %s [-{d|s}] [-n=-100|100][-l {1|2|3|4|5}] [-L=logfile] [-c=encoding] | [-v] | [-h]\n",
 	     argv[0]);
 	printf
 	    ("SpeechD-Up -- Interface between Speech Dispatcher and SpeakUp (GNU GPL)\n\n");
@@ -105,6 +105,7 @@ void options_set_default(void)
 	options.spd_spk_mode = MODE_DAEMON;
 	options.log_level = 3;
 	options.volume = 0;
+	options.volume_set = DEFAULT;
 	options.log_level_set = DEFAULT;
 	if (!strcmp(LOGPATH, ""))
 		options.log_file_name = strdup("/var/log/speechd-up.log");
@@ -161,7 +162,7 @@ void options_parse(int argc, char *argv[])
 			options.log_level_set = COMMAND_LINE;
 			break;
 		case 'n':
-			options.volume = strdup(optarg);
+			options.volume = optarg;
 			options.volume_set = COMMAND_LINE;			
 			break;			
 		case 'L':
