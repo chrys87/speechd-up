@@ -40,7 +40,7 @@ Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU General Public License as published by the
 Free Software Foundation; either version 2 of the License, or (at your
 option) any later version. A copy of the license is included in the
-section entitled ``GNU General Public License''.
+section entitled ''GNU General Public License''.
 @end quotation
 
 @end titlepage
@@ -89,8 +89,6 @@ visually impaired people to use the computer.
 * Problems::                    It has many problems
 * Contact and Reporting Bugs::  If you want to contact us
 * How You Can Help::            We rely on your support
-* GNU General Public License::  Conditions of copying SpeechD-Up
-* GNU Free Documentation License::  Conditions of copying this manual
 @end menu
 
 @node Installing, Invoking, Top, Top
@@ -474,7 +472,7 @@ if you let us know about it. Please do it by email on the address
 @email{speechd@@bugs.freebsoft.org}, but please don't send us messages
 larger than half a megabyte unless we ask you.
 
-@node How You Can Help, GNU General Public License, Contact and Reporting Bugs, Top
+@node How You Can Help, Contact and Reporting Bugs, Top
 @chapter How You Can Help
 
 If you want to contribute to the development of Speech Dispatcher,
@@ -526,20 +524,15 @@ and Free Software.
 @end itemize
 
 
-@node GNU General Public License, GNU Free Documentation License, How You Can Help, Top
+@node GNU Free Documentation License, How You Can Help, Top
 @appendix GNU General Public License
 @center Version 2, June 1991
-@cindex GPL, GNU General Public License
+@cindex GPL
 
 @include gpl.texi
 
 
-@node GNU Free Documentation License,  , GNU General Public License, Top
-@appendix GNU Free Documentation License
-@center Version 1.2, November 2002
-@cindex FDL, GNU Free Documentation License
 
-@include fdl.texi
 
 @bye
 
