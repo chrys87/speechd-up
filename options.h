@@ -31,8 +31,9 @@
 
 struct spd_options {
 	int log_level;
-	int volume;	
 	int log_level_set;
+	int volume;
+	int volume_set;
 	char *log_file_name;
 	int log_file_name_set;
 	int spd_spk_mode;
